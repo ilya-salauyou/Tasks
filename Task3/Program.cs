@@ -18,12 +18,7 @@ namespace Task3
                 new Sale(900m, "Tolik")
             };
 
-            Console.WriteLine("Без челов с бонусом 0.0m");
             var bounuses = BonusCalculator.CalculateBonus(sales);
-            BonusCalculator.PrintBonuses(bounuses);
-
-            Console.WriteLine("Все челы");
-            bounuses = BonusCalculator.CalculateBonusIncludeZeros(sales);
             BonusCalculator.PrintBonuses(bounuses);
         }
     }
