@@ -1,0 +1,18 @@
+create table Incident (
+  Id int primary key,
+  Title text not null,
+  Status text not null check(Status in ('Active', 'Resolved', 'Cancelled')), 
+  CreatedOn date not null,
+  ResolutionDate date
+);
+
+insert into Incident values (1, 'title1', 'Active', '2024-12-11', null);
+insert into Incident values (2, 'title2', 'Active', '2025-11-20', null);
+insert into Incident values (3, 'title3', 'Cancelled', '2025-11-22', '2025-11-23');
+
+update Incident set Status = 'Resolved', ResolutionDate = current_date() 
+where Status = 'Active';
+select row_count();
+
+select Status, count(*), avg(datediff(ifnull(ResolutionDate, current_date()), CreatedOn)) from Incident
+group by Status;
